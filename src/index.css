@@ -21,6 +21,7 @@
   --max-width: 1180px;
   --shadow-glow: 0 0 60px -20px rgba(47, 95, 237, 0.45);
   --shadow-card: 0 16px 40px -24px rgba(16, 22, 47, 0.18);
+  color-scheme: light;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
