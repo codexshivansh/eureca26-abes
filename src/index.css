@@ -1,23 +1,26 @@
 :root {
-  /* Palette sampled from the official EUREKA! Road to Enterprise 2026
-     lockup — deep navy + brand blue, not a generic AI-gradient theme. */
-  --bg: #05070f;
-  --bg-alt: #080b18;
-  --card: #0d1226;
-  --card-border: #1e2743;
-  --text: #f2f4fa;
-  --text-dim: #a7b0c7;
-  --text-dimmer: #6c7690;
+  /* Light, professional "visionary" palette — brand blue + navy accents on
+     clean white/near-white surfaces. The hero keeps a dark photo backdrop;
+     everything below it is light. */
+  --bg: #f6f8fc;
+  --bg-alt: #eef1f9;
+  --card: #ffffff;
+  --card-border: #e1e6f2;
+  --text: #10162f;
+  --text-dim: #4b5573;
+  --text-dimmer: #7c86a3;
   --accent-1: #14205c;
   --accent-2: #2f5fed;
   --accent-3: #4f8dff;
   --accent-4: #8fb4ff;
+  --hero-bg-end: #090c18;
   --gradient-brand: linear-gradient(120deg, #142873 0%, #2f5fed 55%, #5b9dff 100%);
   --gradient-cta: linear-gradient(120deg, #2f5fed 0%, #1a3fb8 100%);
   --radius: 18px;
   --radius-sm: 10px;
   --max-width: 1180px;
   --shadow-glow: 0 0 60px -20px rgba(47, 95, 237, 0.45);
+  --shadow-card: 0 16px 40px -24px rgba(16, 22, 47, 0.18);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -29,6 +32,8 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -150,14 +155,25 @@ img {
 }
 
 .btn-ghost {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(20, 32, 90, 0.04);
   color: var(--text);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(20, 32, 90, 0.16);
 }
 
 .btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.09);
+  background: rgba(20, 32, 90, 0.08);
   transform: translateY(-2px);
+}
+
+/* Ghost buttons that sit on the dark hero photo need light text/border */
+.hero-actions .btn-ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.hero-actions .btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .btn:disabled {
@@ -174,8 +190,8 @@ img {
   right: 0;
   z-index: 100;
   backdrop-filter: blur(14px);
-  background: rgba(5, 7, 15, 0.78);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.82);
+  border-bottom: 1px solid var(--card-border);
 }
 
 .navbar-inner {
@@ -265,7 +281,7 @@ img {
       180deg,
       rgba(5, 7, 15, 0.55) 0%,
       rgba(5, 7, 15, 0.82) 60%,
-      var(--bg) 100%
+      var(--hero-bg-end) 100%
     ),
     radial-gradient(55% 55% at 20% 10%, rgba(20, 40, 115, 0.4), transparent 70%),
     radial-gradient(45% 45% at 85% 0%, rgba(47, 95, 237, 0.25), transparent 70%);
@@ -277,6 +293,12 @@ img {
   display: grid;
   gap: 40px;
   align-items: center;
+  min-width: 0;
+}
+
+.hero-inner > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 @media (min-width: 980px) {
@@ -306,6 +328,12 @@ img {
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 22px;
+  max-width: 100%;
+}
+
+.hero-badge-row .eyebrow {
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .hero-title {
@@ -446,8 +474,8 @@ img {
 
 /* ---------- Stats ---------- */
 .stats-strip {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
   background: var(--bg-alt);
   padding: 46px 0;
 }
@@ -507,6 +535,7 @@ img {
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
   padding: 26px;
+  box-shadow: var(--shadow-card);
 }
 
 .about-card .icon {
@@ -588,6 +617,7 @@ img {
   border: 1px solid var(--card-border);
   border-radius: var(--radius-sm);
   padding: 20px 22px;
+  box-shadow: var(--shadow-card);
 }
 
 .timeline-item.active .timeline-card {
@@ -666,12 +696,14 @@ img {
   padding: 18px;
   font-weight: 700;
   font-size: 0.92rem;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .track-chip:hover {
-  border-color: var(--accent-1);
+  border-color: var(--accent-2);
   transform: translateY(-3px);
+  box-shadow: 0 20px 40px -20px rgba(47, 95, 237, 0.35);
 }
 
 /* ---------- Rewards ---------- */
@@ -690,8 +722,9 @@ img {
 .reward-card {
   border-radius: var(--radius);
   padding: 28px;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+  background: linear-gradient(160deg, rgba(47, 95, 237, 0.05), rgba(20, 40, 115, 0.02));
   border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-card);
 }
 
 .reward-card h3 {
@@ -723,6 +756,7 @@ img {
   border: 1px solid var(--card-border);
   border-radius: var(--radius-sm);
   overflow: hidden;
+  box-shadow: var(--shadow-card);
 }
 
 .faq-question {
@@ -783,6 +817,7 @@ img {
   padding: 40px;
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-card);
 }
 
 @media (max-width: 640px) {
@@ -883,8 +918,8 @@ img {
 .field input,
 .field select,
 .field textarea {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(20, 32, 90, 0.03);
+  border: 1px solid rgba(20, 32, 90, 0.14);
   border-radius: 10px;
   padding: 13px 14px;
   color: var(--text);
@@ -894,6 +929,11 @@ img {
   width: 100%;
   min-height: 48px; /* comfortable tap target on phones */
   transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--text-dimmer);
 }
 
 .field select {
@@ -910,7 +950,7 @@ img {
 .field select:focus,
 .field textarea:focus {
   border-color: var(--accent-3);
-  background: rgba(20, 40, 115, 0.08);
+  background: rgba(47, 95, 237, 0.05);
 }
 
 .field textarea {
@@ -936,7 +976,7 @@ img {
 }
 
 .field-error {
-  color: #ff8a8a;
+  color: #d92d2d;
   font-size: 0.76rem;
   font-weight: 600;
 }
@@ -949,7 +989,7 @@ img {
 /* ---------- Member blocks (dynamic team fields) ---------- */
 .member-block {
   border: 1px solid var(--card-border);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(20, 32, 90, 0.025);
   border-radius: var(--radius-sm);
   padding: 18px;
   display: flex;
@@ -993,10 +1033,11 @@ img {
 .payment-qr-wrap {
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--card-border);
   background: #fff;
   width: 160px;
   padding: 6px;
+  box-shadow: var(--shadow-card);
 }
 
 .payment-qr-wrap img {
@@ -1028,16 +1069,16 @@ img {
 }
 
 .form-status.success {
-  color: #4ade80;
+  color: #16a34a;
 }
 
 .form-status.error {
-  color: #ff8a8a;
+  color: #d92d2d;
 }
 
 /* ---------- Footer ---------- */
 .footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--card-border);
   padding: 46px 0 30px;
   color: var(--text-dimmer);
 }
@@ -1069,7 +1110,7 @@ img {
   margin-top: 26px;
   font-size: 0.78rem;
   line-height: 1.6;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--card-border);
   padding-top: 22px;
 }
 
@@ -1081,9 +1122,10 @@ img {
   right: 0;
   z-index: 90;
   padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
-  background: rgba(7, 7, 13, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(14px);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--card-border);
+  box-shadow: 0 -8px 24px -12px rgba(16, 22, 47, 0.15);
 }
 
 .mobile-cta .btn {
