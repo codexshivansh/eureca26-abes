@@ -1,4 +1,4 @@
-import { REWARDS } from "../data/eureca";
+import { REWARDS } from "../data/eureka";
 import useReveal from "../hooks/useReveal";
 
 export default function Rewards() {

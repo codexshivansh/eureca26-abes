@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FAQS } from "../data/eureca";
+import { FAQS } from "../data/eureka";
 import useReveal from "../hooks/useReveal";
 
 export default function FAQ() {

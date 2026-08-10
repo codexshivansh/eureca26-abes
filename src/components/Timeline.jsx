@@ -1,4 +1,4 @@
-import { TIMELINE } from "../data/eureca";
+import { TIMELINE } from "../data/eureka";
 import useReveal from "../hooks/useReveal";
 
 export default function Timeline() {
@@ -12,7 +12,7 @@ export default function Timeline() {
             The <span className="gradient-text">Eureka! Journey</span>
           </h2>
           <p className="section-sub" style={{ margin: "12px auto 0" }}>
-            From idea to enterprise — here's the full timeline for EURECA '26.
+            From idea to enterprise — here's the full timeline for EUREKA '26.
           </p>
         </div>
 

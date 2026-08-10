@@ -1,4 +1,4 @@
-import { STATS } from "../data/eureca";
+import { STATS } from "../data/eureka";
 
 export default function Stats() {
   return (

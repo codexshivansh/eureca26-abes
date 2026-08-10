@@ -1,9 +1,9 @@
-# EURECA '26 — ABES Engineering College Registration Site
+# EUREKA '26 — ABES Engineering College Registration Site
 
-A campus landing page for the **Eureka! Zonal Round** (EURECA '26, E-Cell IIT Bombay) at
+A campus landing page for the **Eureka! Zonal Round** (EUREKA '26, E-Cell IIT Bombay) at
 ABES Engineering College, Ghaziabad. Built with Vite + React. The hero section explains
 what's happening and how to register at a glance; scroll down for stats, timeline, tracks,
-global rewards, FAQ, and a working registration form wired to **Web3Forms**.
+global rewards, FAQ, and a working registration form wired to **Forminit**.
 
 ## Run locally
 
@@ -21,23 +21,32 @@ npm run build
 ```
 
 Output goes to `dist/` — a static folder you can deploy anywhere (Netlify, Vercel, GitHub
-Pages, Cloudflare Pages, or your college server).
+Pages, Cloudflare Pages, or your college server). This project auto-deploys to Vercel on
+every push to `main`.
 
-## Web3Forms setup (already done)
+## Forminit setup (already done)
 
-The registration form submits to Web3Forms using an access key tied to
-**helloteviq@gmail.com**. A dedicated form named **"EURECA 26 - ABES Registration"** was
-created at [web3forms.com](https://web3forms.com) — every submission lands straight in
-that inbox, and you can also view/export entries from the Web3Forms dashboard
-(Login → Submissions).
+The registration form submits to Forminit — free plan, chosen because it supports real
+file attachments (payment screenshots) unlike Web3Forms' free tier. A dedicated form
+named **"EUREKA 26 - ABES Registration"** lives at [forminit.com](https://forminit.com)
+under the account that signed up during setup — every submission (and payment
+screenshot, capped at 100KB) lands straight in that inbox, and you can also view/export
+entries from the Forminit dashboard.
 
-The key lives in `src/data/eureca.js` as `WEB3FORMS_ACCESS_KEY`. If you ever need to
-rotate it, generate a new key in the Web3Forms dashboard and swap the value there.
+The form ID lives in `src/data/eureka.js` as `FORMINIT_FORM_ID`. If you ever need to
+point the site at a different form, swap the value there.
 
 ## Editing event details
 
-All copy — dates, tracks, stats, FAQs, college name — lives in one place:
-`src/data/eureca.js`. Update that file and every section on the page updates with it.
+All copy — dates, tracks, stats, FAQs, college name, payment info — lives in one place:
+`src/data/eureka.js`. Update that file and every section on the page updates with it.
+
+## Images
+
+- `src/assets/hero-background.jpg` — hero background photo (behind the headline, ~80%
+  opacity with a navy overlay). Replace this file to swap the photo.
+- `public/payment-qr.jpg` — the UPI QR code shown in the registration form's payment
+  section. Replace this file (keep the same name) to swap the QR code.
 
 ## Notes
 

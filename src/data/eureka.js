@@ -1,5 +1,5 @@
 // Verified from the official Eureka! (E-Cell IIT Bombay) site — ecell.in/eureka — Aug 2026.
-// This campus page covers the ABES Engineering College, Ghaziabad round of EURECA'26.
+// This campus page covers the ABES Engineering College, Ghaziabad round of EUREKA '26.
 
 export const STATS = [
   { value: "$2.5B+", label: "Combined Startup Valuation" },
@@ -105,9 +105,9 @@ export const FORMINIT_FORM_ID = "ptuiur7w4bp";
 
 export const EVENT_INFO = {
   college: "ABES Engineering College, Ghaziabad",
-  editionLabel: "EURECA '26",
+  editionLabel: "EUREKA '26",
   fullName: "Eureka! — Zonal Round",
-  contactEmail: "eureca26@ecell.in",
+  contactEmail: "eureka26@ecell.in",
   dateNote: "Zonal Round Window: Sept 5 – Oct 3, 2026",
   venueNote: "Venue & exact slot to be announced on campus",
 };

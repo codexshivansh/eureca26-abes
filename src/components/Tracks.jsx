@@ -1,4 +1,4 @@
-import { TRACKS } from "../data/eureca";
+import { TRACKS } from "../data/eureka";
 import useReveal from "../hooks/useReveal";
 
 export default function Tracks() {

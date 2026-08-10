@@ -6,7 +6,7 @@ import {
   MEMBER_ORDINALS,
   PAYMENT_INFO,
   EVENT_INFO,
-} from "../data/eureca";
+} from "../data/eureka";
 
 const emptyPerson = () => ({ name: "", contact: "", email: "" });
 

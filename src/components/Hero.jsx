@@ -1,6 +1,5 @@
-import { EVENT_INFO } from "../data/eureca";
+import { EVENT_INFO } from "../data/eureka";
 import heroPhoto from "../assets/hero-background.jpg";
-import eurekaLogo from "../assets/eureka-logo.jpg";
 
 export default function Hero() {
   return (
@@ -11,17 +10,13 @@ export default function Hero() {
       </div>
       <div className="container hero-inner">
         <div>
-          <div className="eureka-banner">
-            <img src={eurekaLogo} alt="EUREKA! Road to Enterprise 2026 — E-Cell IIT Bombay" />
-          </div>
-
           <div className="hero-badge-row">
             <span className="eyebrow">🚀 28th Edition · E-Cell IIT Bombay</span>
             <span className="eyebrow">📍 {EVENT_INFO.college}</span>
           </div>
 
           <h1 className="hero-title">
-            Pitch Your Startup at <span className="highlight">EURECA '26</span> —
+            Pitch Your Startup at <span className="highlight">EUREKA '26</span> —
             Asia's Largest Business Model Competition
           </h1>
 

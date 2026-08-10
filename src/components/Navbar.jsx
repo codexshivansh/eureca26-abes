@@ -4,7 +4,7 @@ export default function Navbar() {
       <div className="container navbar-inner">
         <a href="#top" className="navbar-brand">
           <span className="dot" />
-          EURECA&nbsp;<span className="gradient-text">'26</span>
+          EUREKA&nbsp;<span className="gradient-text">'26</span>
         </a>
         <nav className="navbar-links">
           <a href="#about">What is it</a>
