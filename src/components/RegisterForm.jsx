@@ -80,7 +80,6 @@ export default function RegisterForm() {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle"); // idle | submitting | success | error
-  const [submittedTeamName, setSubmittedTeamName] = useState("");
 
   function update(field, value) {
     setForm((f) => ({ ...f, [field]: value }));
@@ -151,7 +150,6 @@ export default function RegisterForm() {
     try {
       const result = await submitToForminit(fields, files);
       if (result.ok) {
-        setSubmittedTeamName(form.teamName);
         setStatus("success");
         setForm(initialForm);
         fireConfetti();
@@ -425,25 +423,6 @@ export default function RegisterForm() {
                 </span>
               )}
             </div>
-
-            {status === "success" && (
-              <div className="share-prompt">
-                <a
-                  className="share-btn"
-                  href={`https://wa.me/?text=${encodeURIComponent(
-                    `We just registered ${
-                      submittedTeamName ? `"${submittedTeamName}" ` : "our team "
-                    }for EUREKA '26 at ${EVENT_INFO.college}! 🚀 Register your team too: ${
-                      typeof window !== "undefined" ? window.location.origin : ""
-                    }`
-                  )}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  📲 Share with your team on WhatsApp
-                </a>
-              </div>
-            )}
           </form>
         </div>
       </div>
