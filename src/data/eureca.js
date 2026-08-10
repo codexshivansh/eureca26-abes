@@ -67,7 +67,7 @@ export const REWARDS = [
 export const FAQS = [
   {
     q: "Do I compulsorily need a team or co-founder?",
-    a: "No — Eureka! allows single participation as well as teams. You can register solo or with your full team.",
+    a: "Eureka! overall allows single participation too — but for this ABES campus registration specifically, the official registration form requires a team of 2 to 4 members. Round up a co-founder or two before you register here.",
   },
   {
     q: "How will my startup be judged?",
@@ -89,6 +89,10 @@ export const FAQS = [
     q: "Is my pitch kept confidential?",
     a: "Presentations are closed-room — only your team and the judges are present. Judges don't sign NDAs, so refer to the official Terms & Conditions for the confidentiality policy.",
   },
+  {
+    q: "Do I need to pay a registration fee?",
+    a: "Yes — scan the QR code in the registration section, pay via UPI, and enter the transaction ID / UTR number in the form so we can verify your payment.",
+  },
 ];
 
 export const WEB3FORMS_ACCESS_KEY = "e3f83841-1364-4f6e-88d7-4abd9c7d35d7";
@@ -100,4 +104,17 @@ export const EVENT_INFO = {
   contactEmail: "eureca26@ecell.in",
   dateNote: "Zonal Round Window: Sept 5 – Oct 3, 2026",
   venueNote: "Venue & exact slot to be announced on campus",
+};
+
+// Team size is fixed to 2–4 members to match the official campus
+// registration form (Microsoft Forms) — no solo entries for this round.
+export const TEAM_SIZES = [2, 3, 4];
+
+// Ordinal labels for each member slot beyond the leader, matching the
+// wording used in the official registration form exactly.
+export const MEMBER_ORDINALS = ["Second", "Third", "Fourth"];
+
+export const PAYMENT_INFO = {
+  qrImage: "/payment-qr.png",
+  note: "Scan the QR code above and pay the registration fee via any UPI app, then enter the transaction ID (UTR number) below so we can verify it. Keep a screenshot handy in case we need it for confirmation.",
 };

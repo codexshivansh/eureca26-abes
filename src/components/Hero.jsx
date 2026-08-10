@@ -42,7 +42,7 @@ export default function Hero() {
             </div>
             <div className="hero-meta-item">
               <div className="label">Team Size</div>
-              <div className="value">Solo or Team</div>
+              <div className="value">2–4 Members</div>
             </div>
             <div className="hero-meta-item">
               <div className="label">Prize Pool</div>
@@ -57,20 +57,20 @@ export default function Hero() {
             <div className="hero-step">
               <div className="hero-step-num">1</div>
               <div>
-                <div className="hero-step-title">Pick your track & form a team</div>
+                <div className="hero-step-title">Form a team of 2–4</div>
                 <div className="hero-step-desc">
-                  Choose from Business, Social, AI &amp; Deeptech, HealthCare and more.
-                  Solo founders are welcome too.
+                  Round up 1–3 teammates and pick a track — Business, Social, AI &amp;
+                  Deeptech, HealthCare and more.
                 </div>
               </div>
             </div>
             <div className="hero-step">
               <div className="hero-step-num">2</div>
               <div>
-                <div className="hero-step-title">Fill the form below</div>
+                <div className="hero-step-title">Fill the form &amp; pay below</div>
                 <div className="hero-step-desc">
-                  Share your team &amp; idea details in the registration form on this page —
-                  takes under 3 minutes.
+                  Share your team's details, scan the QR to pay the fee, and enter your
+                  UTR number — takes under 5 minutes.
                 </div>
               </div>
             </div>
