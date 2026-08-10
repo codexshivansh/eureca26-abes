@@ -48,7 +48,9 @@ function validate(form) {
   if (!form.utr.trim() || form.utr.trim().length < 6)
     errors.utr = "Enter a valid transaction ID / UTR number";
 
-  if (form.paymentScreenshot && form.paymentScreenshot.size > MAX_SCREENSHOT_BYTES)
+  if (!form.paymentScreenshot)
+    errors.paymentScreenshot = "Payment screenshot is required";
+  else if (form.paymentScreenshot.size > MAX_SCREENSHOT_BYTES)
     errors.paymentScreenshot = "Screenshot must be under 100KB — compress it and try again";
 
   return errors;
@@ -378,7 +380,7 @@ export default function RegisterForm() {
                     {errors.utr && <span className="field-error">{errors.utr}</span>}
                   </div>
                   <div className="field" style={{ marginTop: 14 }}>
-                    <label htmlFor="paymentScreenshot">Payment Screenshot (optional)</label>
+                    <label htmlFor="paymentScreenshot">Payment Screenshot *</label>
                     <input
                       id="paymentScreenshot"
                       type="file"
@@ -388,7 +390,7 @@ export default function RegisterForm() {
                       }
                     />
                     <span className="field-hint">
-                      Max 100KB — compress or crop the screenshot before uploading
+                      Required — max 100KB, compress or crop the screenshot before uploading
                     </span>
                     {errors.paymentScreenshot && (
                       <span className="field-error">{errors.paymentScreenshot}</span>

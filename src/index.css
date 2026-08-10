@@ -334,6 +334,9 @@ img {
 .hero-badge-row .eyebrow {
   max-width: 100%;
   overflow-wrap: break-word;
+  color: #cfe0ff;
+  background: rgba(143, 180, 255, 0.16);
+  border: 1px solid rgba(143, 180, 255, 0.4);
 }
 
 .hero-title {
@@ -351,7 +354,7 @@ img {
 }
 
 .hero-title .highlight {
-  background: var(--gradient-brand);
+  background: linear-gradient(120deg, #6fa4ff 0%, #a9c8ff 55%, #ffffff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -918,9 +921,9 @@ img {
 }
 
 .field label {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  color: var(--text-dim);
+  color: var(--text);
 }
 
 .field input,
@@ -990,8 +993,9 @@ img {
 }
 
 .field-hint {
-  color: var(--text-dimmer);
-  font-size: 0.76rem;
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
 /* ---------- Member blocks (dynamic team fields) ---------- */
