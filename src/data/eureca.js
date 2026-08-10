@@ -95,7 +95,13 @@ export const FAQS = [
   },
 ];
 
-export const WEB3FORMS_ACCESS_KEY = "e3f83841-1364-4f6e-88d7-4abd9c7d35d7";
+// Registration form backend — switched from Web3Forms to Forminit because
+// Web3Forms' free plan doesn't support file attachments (payment
+// screenshot), while Forminit's free plan does. Screenshots are capped at
+// 100KB client-side to stretch Forminit's 100MB free storage across as
+// many registrations as possible. Submissions land in the inbox of
+// whichever Forminit account owns this form ID.
+export const FORMINIT_FORM_ID = "ptuiur7w4bp";
 
 export const EVENT_INFO = {
   college: "ABES Engineering College, Ghaziabad",

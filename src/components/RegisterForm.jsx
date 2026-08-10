@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  WEB3FORMS_ACCESS_KEY,
+  FORMINIT_FORM_ID,
   TRACKS,
   TEAM_SIZES,
   MEMBER_ORDINALS,
@@ -18,13 +18,13 @@ const initialForm = {
   track: "",
   idea: "",
   demoLink: "",
-  pptFile: null,
   utr: "",
   paymentScreenshot: null,
 };
 
 const PHONE_RE = /^[6-9]\d{9}$/;
 const EMAIL_RE = /^\S+@\S+\.\S+$/;
+const MAX_SCREENSHOT_BYTES = 100 * 1024; // 100KB cap to stay well within Forminit's free storage
 
 function validatePerson(p, label, errors, prefix) {
   if (!p.name.trim()) errors[`${prefix}Name`] = `${label}'s name is required`;
@@ -48,43 +48,31 @@ function validate(form) {
   if (!form.utr.trim() || form.utr.trim().length < 6)
     errors.utr = "Enter a valid transaction ID / UTR number";
 
+  if (form.paymentScreenshot && form.paymentScreenshot.size > MAX_SCREENSHOT_BYTES)
+    errors.paymentScreenshot = "Screenshot must be under 100KB — compress it and try again";
+
   return errors;
 }
 
-async function submitToWeb3Forms(payload, files) {
-  // Try with files first (works only on Web3Forms Pro). If it fails
-  // specifically because the free plan doesn't support attachments,
-  // silently retry without the file so the registration still goes through.
-  if (files.length > 0) {
-    const fd = new FormData();
-    Object.entries(payload).forEach(([k, v]) => fd.append(k, v));
-    files.forEach(([field, file]) => file && fd.append(field, file));
+async function submitToForminit(fields, files) {
+  const fd = new FormData();
+  Object.entries(fields).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== "") fd.append(key, value);
+  });
+  files.forEach(([field, file]) => file && fd.append(field, file));
 
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: fd,
-    });
-    const data = await res.json();
-    if (data.success) return { ok: true, attached: true };
-    if (!/pro feature/i.test(data.message || "")) {
-      return { ok: false };
-    }
-    // fall through to retry without attachments
-  }
-
-  const res = await fetch("https://api.web3forms.com/submit", {
+  const res = await fetch(`https://forminit.com/f/${FORMINIT_FORM_ID}`, {
     method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify(payload),
+    body: fd,
   });
   const data = await res.json();
-  return { ok: !!data.success, attached: false };
+  return { ok: !!data.success };
 }
 
 export default function RegisterForm() {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState("idle"); // idle | submitting | success | success-no-attachment | error
+  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
 
   function update(field, value) {
     setForm((f) => ({ ...f, [field]: value }));
@@ -129,41 +117,33 @@ export default function RegisterForm() {
 
     setStatus("submitting");
 
-    const payload = {
-      access_key: WEB3FORMS_ACCESS_KEY,
-      subject: `EURECA '26 Registration — ${form.teamName}`,
-      from_name: "EURECA '26 Registration Page",
-      team_name: form.teamName,
-      team_size: form.teamSize,
-      leader_name: form.leader.name,
-      leader_contact: form.leader.contact,
-      leader_email: form.leader.email,
-      college: EVENT_INFO.college,
-      track: form.track || "Not specified",
-      idea_summary: form.idea || "Not provided",
-      demo_link: form.demoLink || "Not provided",
-      utr_number: form.utr,
+    // Forminit field naming: fi-{blockType}-{name}
+    const fields = {
+      "fi-sender-fullName": form.leader.name,
+      "fi-sender-email": form.leader.email,
+      "fi-text-leaderContact": form.leader.contact,
+      "fi-text-teamName": form.teamName,
+      "fi-text-teamSize": form.teamSize,
+      "fi-text-college": EVENT_INFO.college,
+      "fi-text-track": form.track || "Not specified",
+      "fi-text-idea": form.idea || "Not provided",
+      "fi-url-demoLink": form.demoLink || undefined,
+      "fi-text-utrNumber": form.utr,
     };
 
     form.members.forEach((m, i) => {
-      const ord = MEMBER_ORDINALS[i].toLowerCase();
-      payload[`${ord}_member_name`] = m.name;
-      payload[`${ord}_member_contact`] = m.contact;
-      payload[`${ord}_member_email`] = m.email;
+      const ord = MEMBER_ORDINALS[i];
+      fields[`fi-text-${ord.toLowerCase()}MemberName`] = m.name;
+      fields[`fi-text-${ord.toLowerCase()}MemberContact`] = m.contact;
+      fields[`fi-email-${ord.toLowerCase()}MemberEmail`] = m.email;
     });
 
-    const files = [
-      ["ppt_attachment", form.pptFile],
-      ["payment_screenshot", form.paymentScreenshot],
-    ];
+    const files = [["fi-file-paymentScreenshot", form.paymentScreenshot]];
 
     try {
-      const result = await submitToWeb3Forms(payload, files);
-      if (result.ok && result.attached) {
+      const result = await submitToForminit(fields, files);
+      if (result.ok) {
         setStatus("success");
-        setForm(initialForm);
-      } else if (result.ok && !result.attached) {
-        setStatus("success-no-attachment");
         setForm(initialForm);
       } else {
         setStatus("error");
@@ -172,8 +152,6 @@ export default function RegisterForm() {
       setStatus("error");
     }
   }
-
-  const hadFiles = !!(form.pptFile || form.paymentScreenshot);
 
   return (
     <section className="section register-section" id="register">
@@ -200,7 +178,7 @@ export default function RegisterForm() {
               </div>
               <div className="register-info-item">
                 <span className="tick">✓</span>
-                PPT / demo link is optional but strengthens your entry
+                Demo link is optional but strengthens your entry
               </div>
               <div className="register-info-item">
                 <span className="tick">✓</span>
@@ -364,17 +342,6 @@ export default function RegisterForm() {
               />
             </div>
 
-            <div className="field">
-              <label htmlFor="ppt">Submit PPT (optional)</label>
-              <input
-                id="ppt"
-                type="file"
-                accept=".ppt,.pptx,.pdf,.doc,.docx,.xls,.xlsx,image/*,video/*,audio/*"
-                onChange={(e) => update("pptFile", e.target.files?.[0] || null)}
-              />
-              <span className="field-hint">Word, Excel, PPT, PDF, Image, Video or Audio — up to 10MB</span>
-            </div>
-
             {/* Payment */}
             <div className="payment-block">
               <div className="member-block-title">Payment</div>
@@ -405,6 +372,12 @@ export default function RegisterForm() {
                         update("paymentScreenshot", e.target.files?.[0] || null)
                       }
                     />
+                    <span className="field-hint">
+                      Max 100KB — compress or crop the screenshot before uploading
+                    </span>
+                    {errors.paymentScreenshot && (
+                      <span className="field-error">{errors.paymentScreenshot}</span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -419,13 +392,6 @@ export default function RegisterForm() {
               {status === "success" && (
                 <span className="form-status success">
                   ✓ Registered! Check your email for confirmation.
-                </span>
-              )}
-              {status === "success-no-attachment" && (
-                <span className="form-status success">
-                  ✓ Registered! {hadFiles
-                    ? `Your files couldn't be auto-attached — please email them to ${EVENT_INFO.contactEmail}.`
-                    : ""}
                 </span>
               )}
               {status === "error" && (
