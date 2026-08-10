@@ -5,7 +5,7 @@ export const STATS = [
   { value: "$2.5B+", label: "Combined Startup Valuation" },
   { value: "300+", label: "Mentors" },
   { value: "INR 2Cr+", label: "Prizes" },
-  { value: "28th", label: "Edition" },
+  { value: "29th", label: "Edition" },
   { value: "45+", label: "VC Firms" },
   { value: "25L+", label: "Equity-Free Grants" },
 ];

@@ -11,7 +11,7 @@ export default function Hero() {
       <div className="container hero-inner">
         <div>
           <div className="hero-badge-row">
-            <span className="eyebrow">🚀 28th Edition · E-Cell IIT Bombay</span>
+            <span className="eyebrow">🚀 29th Edition · E-Cell IIT Bombay</span>
             <span className="eyebrow">📍 {EVENT_INFO.college}</span>
           </div>
 
