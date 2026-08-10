@@ -63,6 +63,12 @@ img {
   padding: 0 24px;
 }
 
+@media (max-width: 480px) {
+  .container {
+    padding: 0 18px;
+  }
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -97,6 +103,12 @@ img {
 .section {
   padding: 92px 0;
   position: relative;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 64px 0;
+  }
 }
 
 .section-head {
@@ -226,6 +238,12 @@ img {
   overflow: hidden;
 }
 
+@media (max-width: 640px) {
+  .hero {
+    padding: 120px 0 56px;
+  }
+}
+
 .hero-photo-layer {
   position: absolute;
   inset: 0;
@@ -297,6 +315,12 @@ img {
   letter-spacing: -0.02em;
 }
 
+@media (max-width: 420px) {
+  .hero-title {
+    font-size: clamp(1.9rem, 9vw, 2.4rem);
+  }
+}
+
 .hero-title .highlight {
   background: var(--gradient-brand);
   -webkit-background-clip: text;
@@ -355,6 +379,12 @@ img {
   border-radius: 24px;
   padding: 30px;
   box-shadow: var(--shadow-glow);
+}
+
+@media (max-width: 640px) {
+  .hero-card {
+    padding: 22px;
+  }
 }
 
 .hero-card-title {
@@ -755,6 +785,14 @@ img {
   overflow: hidden;
 }
 
+@media (max-width: 640px) {
+  .register-wrap {
+    padding: 22px 18px;
+    gap: 28px;
+    border-radius: 20px;
+  }
+}
+
 .register-wrap::before {
   content: "";
   position: absolute;
@@ -817,6 +855,11 @@ img {
   gap: 16px;
   position: relative;
   z-index: 1;
+  min-width: 0;
+}
+
+.form-grid > * {
+  min-width: 0;
 }
 
 @media (min-width: 620px) {
@@ -843,12 +886,24 @@ img {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 10px;
-  padding: 12px 14px;
+  padding: 13px 14px;
   color: var(--text);
-  font-size: 0.94rem;
+  font-size: 16px; /* keep >=16px so iOS Safari doesn't auto-zoom on focus */
   font-family: inherit;
   outline: none;
+  width: 100%;
+  min-height: 48px; /* comfortable tap target on phones */
   transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.field select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--text-dim) 50%),
+    linear-gradient(135deg, var(--text-dim) 50%, transparent 50%);
+  background-position: calc(100% - 20px) center, calc(100% - 15px) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 36px;
 }
 
 .field input:focus,
@@ -900,6 +955,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  min-width: 0;
 }
 
 .member-block-title {
@@ -1024,7 +1080,7 @@ img {
   left: 0;
   right: 0;
   z-index: 90;
-  padding: 12px 16px;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
   background: rgba(7, 7, 13, 0.9);
   backdrop-filter: blur(14px);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -1032,11 +1088,19 @@ img {
 
 .mobile-cta .btn {
   width: 100%;
+  min-height: 48px;
 }
 
 @media (min-width: 720px) {
   .mobile-cta {
     display: none;
+  }
+}
+
+/* keep the sticky bar from covering the last section / footer content */
+@media (max-width: 719px) {
+  .footer {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
   }
 }
 

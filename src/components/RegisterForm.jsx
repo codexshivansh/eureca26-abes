@@ -195,6 +195,7 @@ export default function RegisterForm() {
                 <input
                   id="teamName"
                   type="text"
+                  autoComplete="off"
                   value={form.teamName}
                   onChange={(e) => update("teamName", e.target.value)}
                   placeholder="e.g. Nimbus Labs"
@@ -227,6 +228,7 @@ export default function RegisterForm() {
                   <label>Name *</label>
                   <input
                     type="text"
+                    autoComplete="name"
                     value={form.leader.name}
                     onChange={(e) => updateLeader("name", e.target.value)}
                     placeholder="Full name"
@@ -237,6 +239,9 @@ export default function RegisterForm() {
                   <label>Contact No *</label>
                   <input
                     type="tel"
+                    inputMode="numeric"
+                    autoComplete="tel"
+                    maxLength={10}
                     value={form.leader.contact}
                     onChange={(e) => updateLeader("contact", e.target.value)}
                     placeholder="10-digit number"
@@ -250,6 +255,8 @@ export default function RegisterForm() {
                 <label>Email *</label>
                 <input
                   type="email"
+                  inputMode="email"
+                  autoComplete="email"
                   value={form.leader.email}
                   onChange={(e) => updateLeader("email", e.target.value)}
                   placeholder="you@example.com"
@@ -267,6 +274,7 @@ export default function RegisterForm() {
                     <label>Name *</label>
                     <input
                       type="text"
+                      autoComplete="off"
                       value={m.name}
                       onChange={(e) => updateMember(i, "name", e.target.value)}
                       placeholder="Full name"
@@ -279,6 +287,9 @@ export default function RegisterForm() {
                     <label>Contact No *</label>
                     <input
                       type="tel"
+                      inputMode="numeric"
+                      autoComplete="off"
+                      maxLength={10}
                       value={m.contact}
                       onChange={(e) => updateMember(i, "contact", e.target.value)}
                       placeholder="10-digit number"
@@ -292,6 +303,8 @@ export default function RegisterForm() {
                   <label>Email *</label>
                   <input
                     type="email"
+                    inputMode="email"
+                    autoComplete="off"
                     value={m.email}
                     onChange={(e) => updateMember(i, "email", e.target.value)}
                     placeholder="you@example.com"
@@ -356,6 +369,8 @@ export default function RegisterForm() {
                     <input
                       id="utr"
                       type="text"
+                      inputMode="numeric"
+                      autoComplete="off"
                       value={form.utr}
                       onChange={(e) => update("utr", e.target.value)}
                       placeholder="e.g. 123456789012"
