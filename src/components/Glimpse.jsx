@@ -17,33 +17,32 @@ export default function Glimpse() {
   const trackRef = useRef(null);
   const timerRef = useRef(null);
 
+  // Scrolls only the carousel track horizontally — never the page. Using
+  // track.scrollTo (instead of child.scrollIntoView) keeps this fully local
+  // to the carousel, regardless of where the user is scrolled on the page.
+  function scrollTrackTo(i) {
+    const track = trackRef.current;
+    const child = track?.children[i];
+    if (!track || !child) return;
+    const targetLeft =
+      child.offsetLeft - (track.clientWidth - child.clientWidth) / 2;
+    track.scrollTo({ left: targetLeft, behavior: "smooth" });
+  }
+
   function goTo(i) {
     const next = (i + SLIDES.length) % SLIDES.length;
     setIndex(next);
-    const track = trackRef.current;
-    if (track) {
-      const child = track.children[next];
-      if (child) child.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-    }
+    scrollTrackTo(next);
   }
 
   useEffect(() => {
-    function restart() {
-      clearInterval(timerRef.current);
-      timerRef.current = setInterval(() => {
-        setIndex((i) => {
-          const next = (i + 1) % SLIDES.length;
-          const track = trackRef.current;
-          if (track) {
-            const child = track.children[next];
-            if (child)
-              child.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-          }
-          return next;
-        });
-      }, 4000);
-    }
-    restart();
+    timerRef.current = setInterval(() => {
+      setIndex((i) => {
+        const next = (i + 1) % SLIDES.length;
+        scrollTrackTo(next);
+        return next;
+      });
+    }, 4000);
     return () => clearInterval(timerRef.current);
   }, []);
 
@@ -52,12 +51,7 @@ export default function Glimpse() {
     timerRef.current = setInterval(() => {
       setIndex((i) => {
         const next = (i + 1) % SLIDES.length;
-        const track = trackRef.current;
-        if (track) {
-          const child = track.children[next];
-          if (child)
-            child.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-        }
+        scrollTrackTo(next);
         return next;
       });
     }, 4000);
