@@ -66,7 +66,11 @@ async function submitToForminit(fields, files) {
   const res = await fetch(`https://forminit.com/f/${FORMINIT_FORM_ID}`, {
     method: "POST",
     body: fd,
+    headers: { Accept: "application/json" },
   });
+  // Forminit only returns JSON when explicitly asked via the Accept header —
+  // otherwise it serves an HTML redirect page and res.json() throws,
+  // surfacing as a false "Something went wrong" even on successful submits.
   const data = await res.json();
   return { ok: !!data.success };
 }
