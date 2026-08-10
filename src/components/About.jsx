@@ -14,7 +14,7 @@ const CARDS = [
   {
     icon: "🌍",
     title: "What you get",
-    desc: "1-on-1 mentorship, access to 50+ VC firms, equity-free grants, and a shot at global stages like Y Combinator and TigerLaunch.",
+    desc: "1-on-1 mentorship, access to 50+ VC firms, equity-free grants, and a shot at global stages like TigerLaunch and Eureka! GCC.",
   },
 ];
 

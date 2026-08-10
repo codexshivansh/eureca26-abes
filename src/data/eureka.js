@@ -2,12 +2,10 @@
 // This campus page covers the ABES Engineering College, Ghaziabad round of EUREKA '26.
 
 export const STATS = [
-  { value: "$2.5B+", label: "Combined Startup Valuation" },
   { value: "300+", label: "Mentors" },
   { value: "INR 2Cr+", label: "Prizes" },
   { value: "29th", label: "Edition" },
   { value: "50+", label: "VC Firms" },
-  { value: "25L+", label: "Equity-Free Grants" },
 ];
 
 export const TIMELINE = [
@@ -53,10 +51,6 @@ export const REWARDS = [
   {
     title: "Eureka! GCC",
     desc: "Selected startups pitch at Eureka! GCC — organized with Gulf Islamic Investments (GII), connecting founders with investors across the GCC region.",
-  },
-  {
-    title: "Y Combinator",
-    desc: "Get directly interviewed by a General Partner from YC, with the potential to secure funding of up to $500,000.",
   },
   {
     title: "TigerLaunch",
