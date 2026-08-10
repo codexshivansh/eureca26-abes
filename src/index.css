@@ -1,21 +1,23 @@
 :root {
-  --bg: #07070d;
-  --bg-alt: #0c0c17;
-  --card: #12121f;
-  --card-border: #23233a;
-  --text: #f5f5fa;
-  --text-dim: #a3a3b8;
-  --text-dimmer: #6f6f88;
-  --accent-1: #ff5f6d;
-  --accent-2: #ffc371;
-  --accent-3: #7b61ff;
-  --accent-4: #22d3ee;
-  --gradient-brand: linear-gradient(120deg, #7b61ff 0%, #ff5f6d 55%, #ffc371 100%);
-  --gradient-cta: linear-gradient(120deg, #ff5f6d 0%, #ffb347 100%);
+  /* Palette sampled from the official EUREKA! Road to Enterprise 2026
+     lockup — deep navy + brand blue, not a generic AI-gradient theme. */
+  --bg: #05070f;
+  --bg-alt: #080b18;
+  --card: #0d1226;
+  --card-border: #1e2743;
+  --text: #f2f4fa;
+  --text-dim: #a7b0c7;
+  --text-dimmer: #6c7690;
+  --accent-1: #14205c;
+  --accent-2: #2f5fed;
+  --accent-3: #4f8dff;
+  --accent-4: #8fb4ff;
+  --gradient-brand: linear-gradient(120deg, #142873 0%, #2f5fed 55%, #5b9dff 100%);
+  --gradient-cta: linear-gradient(120deg, #2f5fed 0%, #1a3fb8 100%);
   --radius: 18px;
   --radius-sm: 10px;
   --max-width: 1180px;
-  --shadow-glow: 0 0 60px -20px rgba(123, 97, 255, 0.55);
+  --shadow-glow: 0 0 60px -20px rgba(47, 95, 237, 0.45);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -70,8 +72,8 @@ img {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent-2);
-  background: rgba(255, 195, 113, 0.08);
-  border: 1px solid rgba(255, 195, 113, 0.25);
+  background: rgba(79, 141, 255, 0.08);
+  border: 1px solid rgba(79, 141, 255, 0.25);
   padding: 6px 14px;
   border-radius: 999px;
 }
@@ -126,13 +128,13 @@ img {
 
 .btn-primary {
   background: var(--gradient-cta);
-  color: #14090a;
-  box-shadow: 0 12px 30px -10px rgba(255, 95, 109, 0.55);
+  color: #ffffff;
+  box-shadow: 0 12px 30px -10px rgba(47, 95, 237, 0.55);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 36px -8px rgba(255, 95, 109, 0.65);
+  box-shadow: 0 16px 36px -8px rgba(47, 95, 237, 0.65);
 }
 
 .btn-ghost {
@@ -160,7 +162,7 @@ img {
   right: 0;
   z-index: 100;
   backdrop-filter: blur(14px);
-  background: rgba(7, 7, 13, 0.72);
+  background: rgba(5, 7, 15, 0.78);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -185,7 +187,7 @@ img {
   height: 10px;
   border-radius: 50%;
   background: var(--gradient-cta);
-  box-shadow: 0 0 14px rgba(255, 137, 90, 0.8);
+  box-shadow: 0 0 14px rgba(47, 95, 237, 0.8);
 }
 
 .navbar-links {
@@ -224,16 +226,31 @@ img {
   overflow: hidden;
 }
 
-.hero::before {
-  content: "";
+.hero-photo-layer {
   position: absolute;
-  inset: -20% -10% auto -10%;
-  height: 700px;
-  background: radial-gradient(60% 60% at 30% 20%, rgba(123, 97, 255, 0.35), transparent 70%),
-    radial-gradient(45% 45% at 80% 10%, rgba(255, 95, 109, 0.28), transparent 70%);
-  filter: blur(10px);
-  pointer-events: none;
+  inset: 0;
   z-index: 0;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  opacity: 0.65;
+}
+
+.hero-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      180deg,
+      rgba(5, 7, 15, 0.55) 0%,
+      rgba(5, 7, 15, 0.82) 60%,
+      var(--bg) 100%
+    ),
+    radial-gradient(55% 55% at 20% 10%, rgba(20, 40, 115, 0.4), transparent 70%),
+    radial-gradient(45% 45% at 85% 0%, rgba(47, 95, 237, 0.25), transparent 70%);
 }
 
 .hero-inner {
@@ -248,6 +265,22 @@ img {
   .hero-inner {
     grid-template-columns: 1.15fr 0.85fr;
   }
+}
+
+.eureka-banner {
+  display: inline-block;
+  background: #ffffff;
+  padding: 12px 20px;
+  border-radius: 14px;
+  margin-bottom: 24px;
+  box-shadow: 0 20px 45px -18px rgba(0, 0, 0, 0.6);
+}
+
+.eureka-banner img {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
 }
 
 .hero-badge-row {
@@ -317,7 +350,7 @@ img {
 
 .hero-card {
   position: relative;
-  background: linear-gradient(160deg, rgba(123, 97, 255, 0.16), rgba(255, 95, 109, 0.08));
+  background: linear-gradient(160deg, rgba(20, 40, 115, 0.16), rgba(47, 95, 237, 0.08));
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 24px;
   padding: 30px;
@@ -454,7 +487,7 @@ img {
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
-  background: rgba(123, 97, 255, 0.15);
+  background: rgba(20, 40, 115, 0.15);
   margin-bottom: 16px;
 }
 
@@ -517,7 +550,7 @@ img {
 
 .timeline-item.active .timeline-dot {
   border-color: var(--accent-2);
-  box-shadow: 0 0 0 5px rgba(255, 195, 113, 0.18);
+  box-shadow: 0 0 0 5px rgba(79, 141, 255, 0.18);
 }
 
 .timeline-card {
@@ -528,8 +561,8 @@ img {
 }
 
 .timeline-item.active .timeline-card {
-  border-color: rgba(255, 195, 113, 0.5);
-  background: linear-gradient(120deg, rgba(255, 95, 109, 0.08), rgba(255, 195, 113, 0.06));
+  border-color: rgba(79, 141, 255, 0.5);
+  background: linear-gradient(120deg, rgba(47, 95, 237, 0.08), rgba(79, 141, 255, 0.06));
 }
 
 .timeline-date {
@@ -726,7 +759,7 @@ img {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(50% 60% at 90% 0%, rgba(123, 97, 255, 0.18), transparent 70%);
+  background: radial-gradient(50% 60% at 90% 0%, rgba(20, 40, 115, 0.18), transparent 70%);
   pointer-events: none;
 }
 
@@ -769,7 +802,7 @@ img {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: rgba(255, 195, 113, 0.18);
+  background: rgba(79, 141, 255, 0.18);
   color: var(--accent-2);
   display: flex;
   align-items: center;
@@ -822,7 +855,7 @@ img {
 .field select:focus,
 .field textarea:focus {
   border-color: var(--accent-3);
-  background: rgba(123, 97, 255, 0.08);
+  background: rgba(20, 40, 115, 0.08);
 }
 
 .field textarea {
@@ -879,8 +912,8 @@ img {
 
 /* ---------- Payment block ---------- */
 .payment-block {
-  border: 1px solid rgba(255, 195, 113, 0.3);
-  background: linear-gradient(150deg, rgba(255, 195, 113, 0.07), rgba(255, 95, 109, 0.04));
+  border: 1px solid rgba(79, 141, 255, 0.3);
+  background: linear-gradient(150deg, rgba(79, 141, 255, 0.07), rgba(47, 95, 237, 0.04));
   border-radius: var(--radius-sm);
   padding: 20px;
   display: flex;
@@ -907,13 +940,15 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: #fff;
   width: 160px;
-  height: 160px;
+  padding: 6px;
 }
 
 .payment-qr-wrap img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
 .payment-note {

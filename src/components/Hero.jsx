@@ -1,10 +1,20 @@
 import { EVENT_INFO } from "../data/eureca";
+import heroPhoto from "../assets/hero-background.jpg";
+import eurekaLogo from "../assets/eureka-logo.jpg";
 
 export default function Hero() {
   return (
     <section className="hero" id="top">
+      <div className="hero-photo-layer">
+        <img src={heroPhoto} alt="" className="hero-photo" />
+        <div className="hero-photo-overlay" />
+      </div>
       <div className="container hero-inner">
         <div>
+          <div className="eureka-banner">
+            <img src={eurekaLogo} alt="EUREKA! Road to Enterprise 2026 — E-Cell IIT Bombay" />
+          </div>
+
           <div className="hero-badge-row">
             <span className="eyebrow">🚀 28th Edition · E-Cell IIT Bombay</span>
             <span className="eyebrow">📍 {EVENT_INFO.college}</span>

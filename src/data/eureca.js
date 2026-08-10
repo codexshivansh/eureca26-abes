@@ -121,6 +121,6 @@ export const TEAM_SIZES = [2, 3, 4];
 export const MEMBER_ORDINALS = ["Second", "Third", "Fourth"];
 
 export const PAYMENT_INFO = {
-  qrImage: "/payment-qr.png",
-  note: "Scan the QR code above and pay the registration fee via any UPI app, then enter the transaction ID (UTR number) below so we can verify it. Keep a screenshot handy in case we need it for confirmation.",
+  qrImage: "/payment-qr.jpg",
+  note: "Scan the QR code above (E-Cell, GPay) and pay the registration fee via any UPI app, then enter the transaction ID (UTR number) below so we can verify it. Keep a screenshot handy in case we need it for confirmation.",
 };
