@@ -24,7 +24,7 @@ export default function Hero() {
             Eureka! by E-Cell IIT Bombay is coming to {EVENT_INFO.college} for its
             Zonal Round — got a startup idea? Build your team, submit your pitch, and get
             a shot at 1-on-1 mentorship, VC introductions, and prizes worth{" "}
-            <strong style={{ color: "var(--text)" }}>INR 2 Crore+</strong>.
+            <strong style={{ color: "#ffffff" }}>INR 2 Crore+</strong>.
           </p>
 
           <div className="hero-actions">
