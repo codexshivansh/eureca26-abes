@@ -4,6 +4,7 @@ import Stats from "./components/Stats";
 import About from "./components/About";
 import Timeline from "./components/Timeline";
 import Tracks from "./components/Tracks";
+import Glimpse from "./components/Glimpse";
 import Rewards from "./components/Rewards";
 import FAQ from "./components/FAQ";
 import RegisterForm from "./components/RegisterForm";
@@ -19,6 +20,7 @@ function App() {
         <About />
         <Timeline />
         <Tracks />
+        <Glimpse />
         <Rewards />
         <RegisterForm />
         <FAQ />

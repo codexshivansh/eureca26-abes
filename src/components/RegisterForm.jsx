@@ -16,6 +16,9 @@ const initialForm = {
   teamSize: "",
   leader: emptyPerson(),
   members: [], // one entry per member beyond the leader, length = teamSize - 1
+  collegeType: "abes", // "abes" | "custom"
+  customCollege: "",
+  referredBy: "",
   track: "",
   idea: "",
   demoLink: "",
@@ -45,6 +48,12 @@ function validate(form) {
     const label = `${MEMBER_ORDINALS[i]} member`;
     validatePerson(m, label, errors, `member${i}`);
   });
+
+  if (form.collegeType === "custom") {
+    if (!form.customCollege.trim()) errors.customCollege = "Enter your college name";
+    if (!form.referredBy.trim())
+      errors.referredBy = "Let us know who referred you to Eureka '26";
+  }
 
   if (!form.utr.trim() || form.utr.trim().length < 6)
     errors.utr = "Enter a valid transaction ID / UTR number";
@@ -103,6 +112,11 @@ export default function RegisterForm() {
     if (errors[key]) setErrors((e) => ({ ...e, [key]: undefined }));
   }
 
+  function setCollegeType(type) {
+    setForm((f) => ({ ...f, collegeType: type }));
+    setErrors((e) => ({ ...e, customCollege: undefined, referredBy: undefined }));
+  }
+
   function handleTeamSizeChange(value) {
     const size = Number(value);
     setForm((f) => {
@@ -131,7 +145,9 @@ export default function RegisterForm() {
       "fi-text-leaderContact": form.leader.contact,
       "fi-text-teamName": form.teamName,
       "fi-text-teamSize": form.teamSize,
-      "fi-text-college": EVENT_INFO.college,
+      "fi-text-college":
+        form.collegeType === "abes" ? EVENT_INFO.college : form.customCollege,
+      "fi-text-referredBy": form.collegeType === "custom" ? form.referredBy : undefined,
       "fi-text-track": form.track || "Not specified",
       "fi-text-idea": form.idea || "Not provided",
       "fi-url-demoLink": form.demoLink || undefined,
@@ -227,6 +243,62 @@ export default function RegisterForm() {
                 {errors.teamSize && <span className="field-error">{errors.teamSize}</span>}
               </div>
             </div>
+
+            {/* College */}
+            <div className="field">
+              <label>College *</label>
+              <div className="toggle-group" role="radiogroup" aria-label="College">
+                <button
+                  type="button"
+                  className={`toggle-option ${form.collegeType === "abes" ? "active" : ""}`}
+                  onClick={() => setCollegeType("abes")}
+                  aria-pressed={form.collegeType === "abes"}
+                >
+                  ABES Engineering College
+                </button>
+                <button
+                  type="button"
+                  className={`toggle-option ${form.collegeType === "custom" ? "active" : ""}`}
+                  onClick={() => setCollegeType("custom")}
+                  aria-pressed={form.collegeType === "custom"}
+                >
+                  Other College
+                </button>
+              </div>
+            </div>
+
+            {form.collegeType === "custom" && (
+              <div className="form-grid two-col">
+                <div className="field">
+                  <label htmlFor="customCollege">College Name *</label>
+                  <input
+                    id="customCollege"
+                    type="text"
+                    autoComplete="off"
+                    value={form.customCollege}
+                    onChange={(e) => update("customCollege", e.target.value)}
+                    placeholder="Your college name"
+                  />
+                  {errors.customCollege && (
+                    <span className="field-error">{errors.customCollege}</span>
+                  )}
+                </div>
+                <div className="field">
+                  <label htmlFor="referredBy">Who referred you to Eureka '26? *</label>
+                  <input
+                    id="referredBy"
+                    type="text"
+                    autoComplete="off"
+                    value={form.referredBy}
+                    onChange={(e) => update("referredBy", e.target.value)}
+                    placeholder="Name of the person / channel"
+                  />
+                  {errors.referredBy && (
+                    <span className="field-error">{errors.referredBy}</span>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Team leader */}
             <div className="member-block">
