@@ -1,5 +1,6 @@
 import { TRACKS } from "../data/eureka";
 import useReveal from "../hooks/useReveal";
+import Glossary from "./Glossary";
 
 export default function Tracks() {
   const [ref, visible] = useReveal();
@@ -19,7 +20,13 @@ export default function Tracks() {
         <div ref={ref} className={`tracks-grid reveal ${visible ? "in" : ""}`}>
           {TRACKS.map((t) => (
             <div className="track-chip" key={t}>
-              {t}
+              {t === "PAN IIT" ? (
+                <Glossary term="Open to startup ideas from students of any IIT, not just IIT Bombay.">
+                  {t}
+                </Glossary>
+              ) : (
+                t
+              )}
             </div>
           ))}
         </div>

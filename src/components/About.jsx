@@ -1,10 +1,20 @@
 import useReveal from "../hooks/useReveal";
+import Glossary from "./Glossary";
 
 const CARDS = [
   {
     icon: "🎯",
     title: "What is Eureka!?",
-    desc: "Asia's largest business model competition, run by E-Cell IIT Bombay since 1998 — for startups at the ideation and MVP stage.",
+    desc: (
+      <>
+        Asia's largest business model competition, run by E-Cell IIT Bombay since 1998 — for
+        startups at the ideation and{" "}
+        <Glossary term="MVP = Minimum Viable Product, the simplest working version of your idea. You don't need one to start — an idea is enough.">
+          MVP
+        </Glossary>{" "}
+        stage.
+      </>
+    ),
   },
   {
     icon: "🏛️",
@@ -14,7 +24,19 @@ const CARDS = [
   {
     icon: "🌍",
     title: "What you get",
-    desc: "1-on-1 mentorship, access to 50+ VC firms, equity-free grants, and a shot at global stages like TigerLaunch and Eureka! GCC.",
+    desc: (
+      <>
+        1-on-1 mentorship, access to 50+{" "}
+        <Glossary term="VC = Venture Capitalist, an investor who funds promising startups in exchange for equity.">
+          VC
+        </Glossary>{" "}
+        firms, equity-free grants, and a shot at global stages like TigerLaunch and Eureka!{" "}
+        <Glossary term="GCC = Gulf Cooperation Council — UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, and Oman.">
+          GCC
+        </Glossary>
+        .
+      </>
+    ),
   },
 ];
 
