@@ -47,6 +47,11 @@ export const TRACKS = [
   "Energy & Sustainability",
 ];
 
+// Options shown in the registration form's Track dropdown — same 8 official
+// tracks plus "Others" as a catch-all, without changing the public "8
+// Tracks" display grid on the Tracks section.
+export const FORM_TRACK_OPTIONS = [...TRACKS, "Others"];
+
 export const REWARDS = [
   {
     title: "Eureka! GCC",

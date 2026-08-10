@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
   FORMINIT_FORM_ID,
-  TRACKS,
+  FORM_TRACK_OPTIONS,
   TEAM_SIZES,
   MEMBER_ORDINALS,
   PAYMENT_INFO,
@@ -328,7 +328,7 @@ export default function RegisterForm() {
                   onChange={(e) => update("track", e.target.value)}
                 >
                   <option value="">Select</option>
-                  {TRACKS.map((t) => (
+                  {FORM_TRACK_OPTIONS.map((t) => (
                     <option key={t} value={t}>
                       {t}
                     </option>
