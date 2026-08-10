@@ -1080,6 +1080,15 @@ img {
   border-radius: 6px;
 }
 
+.payment-amount {
+  margin-top: 8px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--accent-2);
+  letter-spacing: 0.01em;
+}
+
 .payment-note {
   color: var(--text-dim);
   font-size: 0.86rem;

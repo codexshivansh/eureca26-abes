@@ -369,6 +369,7 @@ export default function RegisterForm() {
               <div className="payment-grid">
                 <div className="payment-qr-wrap">
                   <img src={PAYMENT_INFO.qrImage} alt="Scan to pay registration fee via UPI" />
+                  <div className="payment-amount">₹100 per team</div>
                 </div>
                 <div>
                   <p className="payment-note">{PAYMENT_INFO.note}</p>
