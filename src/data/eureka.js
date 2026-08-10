@@ -6,7 +6,7 @@ export const STATS = [
   { value: "300+", label: "Mentors" },
   { value: "INR 2Cr+", label: "Prizes" },
   { value: "29th", label: "Edition" },
-  { value: "45+", label: "VC Firms" },
+  { value: "50+", label: "VC Firms" },
   { value: "25L+", label: "Equity-Free Grants" },
 ];
 
@@ -29,7 +29,7 @@ export const TIMELINE = [
   {
     date: "Oct 17–20",
     title: "VC Round",
-    desc: "Shortlisted teams pitch to 45+ leading Venture Capital firms.",
+    desc: "Shortlisted teams pitch to 50+ leading Venture Capital firms.",
   },
   {
     date: "December",
