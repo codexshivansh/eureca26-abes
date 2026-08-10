@@ -198,21 +198,21 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 84px;
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .navbar-brand .dot {
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   background: var(--gradient-cta);
-  box-shadow: 0 0 14px rgba(47, 95, 237, 0.8);
+  box-shadow: 0 0 16px rgba(47, 95, 237, 0.8);
   flex-shrink: 0;
 }
 
@@ -224,16 +224,16 @@ img {
 
 .navbar-brand-title {
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: 1.45rem;
   letter-spacing: -0.01em;
   color: var(--text);
 }
 
 .navbar-brand-sub {
-  margin-top: 2px;
-  font-size: 0.62rem;
+  margin-top: 3px;
+  font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   background: var(--gradient-brand);
   -webkit-background-clip: text;
