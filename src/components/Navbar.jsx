@@ -4,7 +4,12 @@ export default function Navbar() {
       <div className="container navbar-inner">
         <a href="#top" className="navbar-brand">
           <span className="dot" />
-          <span>EUREKA&nbsp;<span className="gradient-text">'26</span></span>
+          <span className="navbar-brand-text">
+            <span className="navbar-brand-title">
+              EUREKA&nbsp;<span className="gradient-text">'26</span>
+            </span>
+            <span className="navbar-brand-sub">by E-Cell, IIT Bombay</span>
+          </span>
         </a>
         <nav className="navbar-links">
           <a href="#about">What is it</a>

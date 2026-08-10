@@ -205,9 +205,6 @@ img {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: -0.01em;
 }
 
 .navbar-brand .dot {
@@ -216,6 +213,34 @@ img {
   border-radius: 50%;
   background: var(--gradient-cta);
   box-shadow: 0 0 14px rgba(47, 95, 237, 0.8);
+  flex-shrink: 0;
+}
+
+.navbar-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.navbar-brand-title {
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.navbar-brand-sub {
+  margin-top: 2px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 6px rgba(47, 95, 237, 0.35));
+  white-space: nowrap;
 }
 
 .navbar-links {
